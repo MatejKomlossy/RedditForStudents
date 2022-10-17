@@ -1,0 +1,11 @@
+Milý kolega,
+
+Vítame Ťa v internom systéme DoLi (Documents Library).
+
+Pre zobrazenie svojho konta použi nasledujúci link: 
+http://5.178.48.91:8180/login
+
+Tvoj login: meno.priezvisko.deňnarodenia
+Tvoje heslo: posledné štvorčíslie tvojho rodného čísla
+
+Tvoj DoLi team

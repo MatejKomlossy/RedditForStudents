@@ -1,0 +1,4 @@
+select *
+from documents
+where edited
+  and not old;

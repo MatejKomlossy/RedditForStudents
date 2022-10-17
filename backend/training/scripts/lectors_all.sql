@@ -1,0 +1,2 @@
+select distinct lector
+from online_trainings

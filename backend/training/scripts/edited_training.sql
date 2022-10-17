@@ -1,0 +1,3 @@
+select *
+from online_trainings
+where edited;

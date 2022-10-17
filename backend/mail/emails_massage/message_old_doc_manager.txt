@@ -1,0 +1,12 @@
+Milý kolega,
+
+V systéme DoLi bola publikovaná nová verzia dokumentu : {document}
+na ktorý je potrebné zaškoliť Tvoj tím a následne v systéme potvrdiť podpisom realizáciu tohto kroku.
+
+Pre zobrazenie svojho konta použi nasledujúci link:
+http://5.178.48.91:8180/login
+
+V prípade nejasností sa obráť na svojho koordinátora kvality.
+
+Ďakujeme
+Tvoj DoLi team

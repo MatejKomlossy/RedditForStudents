@@ -1,0 +1,8 @@
+Radi by sme Ti pripomenuli novú verziu dokumentu {document}, s ktorou si sa ešte neoboznámil.
+Aby celý proces prebehol správne, po prečítaní dokumentu, zaklikni v systéme  DoLi políčko „Sign“.
+
+Pre zobrazenie svojho konta použi nasledujúci link:
+http://5.178.48.91:8180/login
+
+Ďakujeme!
+Tvoj Doli team

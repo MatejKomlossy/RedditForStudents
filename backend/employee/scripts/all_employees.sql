@@ -1,0 +1,3 @@
+select id, first_name, last_name, department_id
+from employees
+where deleted = false

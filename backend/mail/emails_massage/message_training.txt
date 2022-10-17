@@ -1,0 +1,10 @@
+Milý kolega,
+
+DoLi bola informovaná o tom, že si sa zúčastnil školenia: {document},
+Potvď svoju účasť na školení v systéme.
+
+Pre zobrazenie svojho konta použi nasledujúci link: 
+http://5.178.48.91:8180/login
+
+Ďakujeme,
+Tvoj DoLi team

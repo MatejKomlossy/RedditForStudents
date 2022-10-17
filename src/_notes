@@ -1,0 +1,62 @@
+MATO
+- nejde report - biju sa nam url
+- nejde import - nevie zaradit nadriadenych
+- pribalit k reportom aj nadriadenych
+
+JANCI
+- v novom tabe ma odhlasi
+- do print reportu pridat logo a datum na kazdu stranu
+
+TEST
+-> report history
+#12 -> removedEmplyees #1,2#
+#00 -> zo skill-matrix sa viem vratit naspat na table
+#14 -> všetkým nadriadeným sa pošle informačný mail o tom, že ich podriadení majú nieco podpisat
+
+
+IN FUTURE
+#35 -> preklad
+#21 -> opakovane preskolenie zobrazit v skillmatrix
+#28 -> export skillmatrix, found records, report
+#00 -> v settings viem nastavit aby to zobrazovalo aj deleted employees
+#00 -> pridanie assigned_to pre sent document nevyrobi nove podpisy
+#00 -> vo filtri ukazat state of superior signs
+#00 -> default language zisti z browser-a
+
+
+done MATO
+done #24 -> filter podla zamestnanca
+done #24 -> skill-matrix len po dvojkobinacii
+done #24 -> skill-matrix podla nadriadeneho
+done #25 -> report
+done #00 -> removedEmployees
+done #00 -> complete field
+done #00 -> viem zmenit veci na prazdny string
+done #29 -> import zamestnancov
+done #30 -> import kariet
+
+done JANCI
+done Po ulozenej zmene pri found doc da state na NaN%
+done Zarovnat stlpce v tabulkach
+done Po podpisani ako manager sebe, tak to zmizne cele (refresh)
+done Nepise hodnoty do buniek, ked hladam podla person
+done Po odoslani as new verion mi z found doc vymaze dany dokument (refresh)
+done pridat doc link v SM
+done confirm modal
+done confirm modal aj do saved
+done clearable select
+done map attendee do training
+done po odhlaseni redirect to login
+done uprava modalu, headerov, prazdnej tabulky
+done #12 -> combinations
+done #16 -> zobrazit aj jeho ANET, oddelenie a divízia
+done #24 -> filter podla zamestnanca
+done #24 -> filter podla kombinacie
+done #24 -> skill-matrix podla nadriadeneho
+done #00 => filter by branch | city
+done #25 -> report
+done #00 => saved dokument nejde priamo odoslat (cez modal, ano)
+done #00 => pri Vyhladavani podla employee hodi chybu
+done #00 => chyba pri odosielani online trainingu
+
+done Blake Sargents 2 pre empl 4 v skillmatrixe ako neodoslane
