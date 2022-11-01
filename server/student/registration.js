@@ -42,13 +42,13 @@ function preRegistration(keys){
                 body.password =  crypto.createHash('sha256').update(body.password).digest('hex').toString();
 
                 if (containAllImportantMembers(body, keys)) {
-                    if (await isIsicActive(body.isic)) {
+                    if (await isIsicActive(body.isic_number)) {
                         let query = studentSQL.insert([body]).returning(studentSQL.id).toQuery();
                         console.log(query);
                         const result = await db.get_json_query(query);
                         console.log(result);
                         if (result instanceof Error) {
-                            res.status(500).send("no rows from db");
+                            res.status(500).send(result.toString());
                             return;
                         }
                         res.status(200).send("student was registrate");

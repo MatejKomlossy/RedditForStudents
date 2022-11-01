@@ -2,7 +2,7 @@ POST http://localhost:5000/student/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "nick_name": "temp"
+  "nick_name": "temp",
   "isic_number": "S421000177007F",
   "password": "temp"
 }
