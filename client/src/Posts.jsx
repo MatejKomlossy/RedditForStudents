@@ -27,9 +27,13 @@ function Posts(){
     }
 
     const logoutSend = () => {
+        console.log(document.cookie)
         const req = fetch(studentLogout, {
-            method: "POST"
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"cookie": document.cookie})
         });
+        console.log("CLICK LOGOUT")
         req.then(res => {
             if (res.ok) {
                 showSuccess("Logout successful")
@@ -39,8 +43,10 @@ function Posts(){
         }).catch(err => {
             showError(err)
         })
-        console.log("CLICK")
     }
+
+    /*const user = session.user.name;
+    console.log(user)*/
 
     return (
         <>
