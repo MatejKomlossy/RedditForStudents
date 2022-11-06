@@ -1,6 +1,7 @@
-const {studentRegister, studentLogin} = require("../contants/urls");
+const {studentRegister, studentLogin, studentLogout} = require("../contants/urls");
 const {preRegistration} = require("./registration");
 const {preLogin} = require("./login");
+const preLogout = require("./logout");
 
 class student {
     nick_name
@@ -15,6 +16,7 @@ class student {
     static initAppServices(app) {
         app.post(studentLogin, preLogin());
         app.post(studentRegister, preRegistration((Object.keys(new student()))));
+        app.post(studentLogout, preLogout());
     }
 }
 
