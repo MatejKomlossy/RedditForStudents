@@ -1,4 +1,5 @@
 import UserProfile from "./user/UserProfile";
+import Header from "./Header";
 import Button from "./components/Button";
 import Alert from './components/Alert';
 import useAlert from "./hooks/useAlrert";
@@ -45,11 +46,9 @@ function Posts(){
         })
     }
 
-    /*const user = session.user.name;
-    console.log(user)*/
-
     return (
         <>
+            <Header title={'Reddit for Students'}/>
             Page with posts. <br/>
             Your username: {UserProfile.getUsername()} <br/>
             Are you logged in? {"" + UserProfile.isUserLoggedIn()} <br/>

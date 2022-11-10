@@ -1,7 +1,7 @@
 const {studentRegister, studentLogin, studentLogout} = require("../contants/urls");
 const {preRegistration} = require("./registration");
 const {preLogin} = require("./login");
-const preLogout = require("./logout");
+const {preLogout} = require("./logout");
 
 class student {
     nick_name
