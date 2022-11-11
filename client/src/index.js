@@ -5,6 +5,7 @@ import App from './App';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./user/Login";
 import Signup from "./user/Signup";
+import UploadSite from "./user/upload";
 import Welcome from "./Welcome";
 import Posts from "./Posts";
 
@@ -16,6 +17,7 @@ root.render(
             <Route path="/" element={<Welcome/>} />
             <Route path="/app" element={<App/>} />
             <Route path="/login" element={<Login />} />
+            <Route path="/upload" element={<UploadSite />} />
             <Route path="/register" element={<Signup />} />
             <Route path="/posts" element={<Posts />} />
         </Routes>

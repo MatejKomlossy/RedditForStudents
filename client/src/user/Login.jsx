@@ -57,7 +57,8 @@ function Login() {
     }
 
     if (loggedIn) {
-        return <Navigate to="/posts"/>
+        return <Navigate to="/upload"/>
+        //return <Navigate to="/posts"/>
     }
     
     return (
