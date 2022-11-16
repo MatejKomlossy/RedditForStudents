@@ -8,6 +8,11 @@ import Signup from "./user/Signup";
 import Welcome from "./Welcome";
 import Posts from "./Posts";
 
+const DEBUG = true;
+if (DEBUG === false) {
+    console.log = function(...data) {}
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode> // toto nehaj lebo to robi problemi v developmente na locale a vola useeffect 2x aj ked by malo iba 1x
