@@ -1,20 +1,25 @@
 const crypto = require("crypto");
 const DB = require("../DB_main/db");
 const {studentSQL} = require("./sqlTable");
-const hour = require("../contants/date.js");
+const {hour} = require("../contants/date.js");
 
 const db = DB.getDbServiceInstance();
+
+async function getUserByName(nick_name) {
+    const query = await studentSQL
+        .select(studentSQL.star())
+        .from(studentSQL)
+        .where(studentSQL.nick_name.equals(nick_name))
+        .toQuery();
+    return await db.get_json_query(query);
+}
+
 function preLogin(){
     return  async function(req, res) {
         try {
-            const query = await studentSQL
-                .select(studentSQL.star())
-                .from(studentSQL)
-                .where(studentSQL.nick_name.equals(req.body.nick_name))
-                .toQuery();
-            const rows = await db.get_json_query(query);
+            const rows = await getUserByName(req.body.nick_name);
             if (rows instanceof Error) {
-                res.status(500).send(rows.toString());
+                res.status(500).send({msg: rows.toString()});
                 return;
             }
             if (!rows.length) {
@@ -22,7 +27,8 @@ function preLogin(){
                 return;
             }
             const row = rows[0];
-            const hash = crypto.createHash('sha256').update(req.body.password).digest('hex').toString();
+            const hash = crypto.createHash('sha256').
+            update(req.body.password).digest('hex').toString();
             if (row.password===hash) {
                 delete row["password"];
                 req.session.loggedin = true;
