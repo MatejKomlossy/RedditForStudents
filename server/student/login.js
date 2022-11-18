@@ -1,15 +1,15 @@
 const crypto = require("crypto");
 const DB = require("../DB_main/db");
-const {studentSQL} = require("./sqlTable");
+const {sqlStudent} = require("./sqlStudent");
 const {hour} = require("../contants/date.js");
 
 const db = DB.getDbServiceInstance();
 
 async function getUserByName(nick_name) {
-    const query = await studentSQL
-        .select(studentSQL.star())
-        .from(studentSQL)
-        .where(studentSQL.nick_name.equals(nick_name))
+    const query = await sqlStudent
+        .select(sqlStudent.star())
+        .from(sqlStudent)
+        .where(sqlStudent.nick_name.equals(nick_name))
         .toQuery();
     return await db.get_json_query(query);
 }
@@ -32,6 +32,7 @@ function preLogin(){
             if (row.password===hash) {
                 delete row["password"];
                 req.session.loggedin = true;
+                req.session.id = row.id;
                 req.session.nick_name = row.nick_name;
                 req.session.expire = new Date(Date.now() + hour);
                 res.status(200).json(row);

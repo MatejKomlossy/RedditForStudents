@@ -14,6 +14,7 @@ test('registration pass', async () => {
     };
     await preRegistration((Object.keys(new student())))(req, res);
     expect(res._status).toBe(200);
+    res._status = 0;
     req.body = {
         nick_name: "temp",
         password: "temp"

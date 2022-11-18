@@ -13,7 +13,7 @@ CREATE TABLE posts (
 						  title varchar,
                           post_text varchar,
                           student_id integer references students,
-						  changed timestamp,
+						  changed timestamp default now(),
                           flag boolean
 );
 select * from posts;
@@ -30,7 +30,7 @@ select * from images;
 DROP TABLE IF EXISTS ratings CASCADE;
 CREATE TABLE ratings (
                           id serial primary key,
-                          category int check(category >=0 and category <=2),
+                          category smallint check(category >=0 and category <=2),
                           post_id integer references posts,
 						  student_id integer references students,
 					      unique (post_id, student_id)
