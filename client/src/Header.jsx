@@ -64,7 +64,7 @@ function Header({title, children}) {
                     {UserProfile.getUsername()}
                     <FaUserGraduate className={'my-auto'}/>
                 </p>
-                <div title={'Log Out'}>
+                <div title={'Peace Out'}>
                     <Button
                         type={'secondary'}
                         children={<FaHandScissors/>}
