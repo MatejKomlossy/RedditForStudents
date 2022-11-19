@@ -1,11 +1,17 @@
 import Hyperlink from "../components/Hyperlink";
 
 
-function PostBody ({text, imageUrl}){
+function PostBody ({maxLines, text, imageUrl}){
 
     const renderLines = (txt) => {
-        if(!txt) return <p>no text</p>
-        return txt.split("\\n").map((line, idx) => <p key={idx}>{line}</p>)
+        if(!txt){
+            return <p>no text</p>
+        }
+        let splitText = txt.split("\\n")
+        let maxNumOfLines = maxLines ? maxLines : splitText.length
+        return splitText
+            .slice(0, maxNumOfLines)
+            .map((line, idx) => <p key={idx}>{line}</p>)
     }
 
     return (
