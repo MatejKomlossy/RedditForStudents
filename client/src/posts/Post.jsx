@@ -7,7 +7,7 @@ function Post({id, title, text, imgUrl}) {
     return (
         <div
             className="flex-col rounded-xl p-6 w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300
-                shadow-lg shadow-blue-900 hover:bg-gradient-to-r hover:scale-110 hover:cursor-pointer
+                shadow-lg shadow-blue-900 hover:bg-gradient-to-r hover:scale-105 hover:cursor-pointer
                 transition-all duration-300 ease-in-out"
         >
             <Link to={`/postDetail/${id}`}>

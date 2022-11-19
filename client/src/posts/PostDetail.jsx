@@ -10,6 +10,7 @@ function PostDetail() {
     const [title, setTitle] = useState("title")
     const [text, setText] = useState("text")
 
+    //useffecty [] na fetch
     return (
         <>
             <Header title={'Reddit for Students'}/>
