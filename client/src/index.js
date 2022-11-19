@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./user/Login";
 import Signup from "./user/Signup";
 import Welcome from "./Welcome";
-import Posts from "./Posts";
+import Posts from "./posts/Posts";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

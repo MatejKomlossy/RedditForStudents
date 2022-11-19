@@ -5,7 +5,7 @@ let instance = null;
 const pool  = new Pool({
     host     : 'localhost',
     user     : 'postgres',
-    password : 'root',
+    password : 'postgres',
     database : 'RedditForStudents',
     port     : 5432
 });

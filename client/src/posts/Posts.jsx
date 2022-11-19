@@ -1,5 +1,7 @@
-import UserProfile from "./user/UserProfile";
-import Header from "./Header";
+import UserProfile from "../user/UserProfile";
+import Header from "../Header";
+import Post from "./Post";
+import CreatePost from "./CreatePost";
 
 
 function Posts(){
@@ -10,6 +12,8 @@ function Posts(){
             Page with posts. <br/>
             Your username: {UserProfile.getUsername()} <br/>
             Are you logged in? {"" + UserProfile.isUserLoggedIn()}
+            <Post></Post>
+            <CreatePost></CreatePost>
         </>
     )
 }
