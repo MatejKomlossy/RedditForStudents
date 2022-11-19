@@ -1,20 +1,24 @@
-const {rows} = require("pg/lib/defaults");
 const Pool = require('pg').Pool;
 let instance = null;
 
 const pool  = new Pool({
     host     : 'localhost',
     user     : 'postgres',
-    password : 'postgres',
+    password : 'root',
     database : 'RedditForStudents',
     port     : 5432
 });
+
+
 
 class DB {
     static conecction = 0;
 
     static getDbServiceInstance() {
-        return instance ? instance : new DB();
+        if (instance === null){
+            instance = new DB();
+        }
+        return instance;
     }
 
     async get_json_query(query) {
@@ -23,6 +27,20 @@ class DB {
             return result.rows;
         } catch (error) {
             return new Error(error);
+        }
+    }
+
+    async doTransactions(body, res, fun) {
+        const client = await pool.connect();
+        try {
+            const msg = await fun(body, res, client);
+            await client.query('COMMIT');
+            res.status(200).send({msg: msg});
+        } catch (e) {
+            await client.query('ROLLBACK');
+            throw e;
+        } finally {
+            client.release();
         }
     }
 }
