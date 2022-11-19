@@ -8,7 +8,7 @@ function CreatePost ({}){
     const [message, setMessage] = useState("");
 
     return (
-        <div className="flex-col border-2 border-blue-600 rounded-xl p-6 w-2/3 min-w-max mx-auto">
+        <div className="flex-col border-2 border-blue-600 rounded-xl p-6 w-10/12 min-w-max mx-auto">
             <div className={"flex-col space-y-5"}>
                 <div className="flex-col mx-auto">
                     <InputField type={'text'}

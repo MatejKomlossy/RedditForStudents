@@ -7,7 +7,7 @@ function PostBody ({maxLines, text, imageUrl}){
         if(!txt){
             return <p>no text</p>
         }
-        let splitText = txt.split("\\n")
+        let splitText = txt.split(/r?\n/)
         let maxNumOfLines = maxLines ? maxLines : splitText.length
         return splitText
             .slice(0, maxNumOfLines)
@@ -17,7 +17,7 @@ function PostBody ({maxLines, text, imageUrl}){
     return (
         <div>
             {renderLines(text)}
-            <Hyperlink href={imageUrl} linkText={"link na image"}/>
+            {imageUrl && <Hyperlink href={imageUrl} linkText={"link na image"}/>}
         </div>
     )
 }

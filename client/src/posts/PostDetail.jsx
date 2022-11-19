@@ -1,24 +1,32 @@
 import PostBody from "./PostBody";
+import {useParams} from 'react-router-dom'
+import {useState} from "react";
+import Header from "../Header";
 
 
-function PostDetail({id, title, text, imgUrl}) {
+function PostDetail() {
+
+    const {id} = useParams()
+    const [title, setTitle] = useState("title")
+    const [text, setText] = useState("text")
 
     return (
-        <div className="flex-col rounded-xl p-6 w-2/3 min-w-max mx-auto bg-gradient-to-b from-cyan-300 to-blue-300
-        shadow-lg shadow-blue-900 hover:bg-gradient-to-r hover:scale-110 hover:cursor-pointer
-        transition-all duration-300 ease-in-out">
-            <div className={"flex-col mx-auto space-y-5"}>
-                <div>
-                    <h2 className="text-2xl mb-2">{title}</h2>
-                    <PostBody
-                        text={text}
-                        imageUrl={"placeholder"}
-                    >
-                    </PostBody>
+        <>
+            <Header title={'Reddit for Students'}/>
+            <div
+                className="flex-col rounded-xl p-6 w-10/12 min-w-max mx-auto bg-gradient-to-b from-cyan-300 to-blue-300">
+                <div className={"flex-col mx-auto space-y-5"}>
+                    <div>
+                        <h2 className="text-2xl mb-2">{title}</h2>
+                        <PostBody
+                            text={text}
+                            imageUrl={"placeholder"}
+                        >
+                        </PostBody>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </>
     )
 }
 

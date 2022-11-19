@@ -14,15 +14,10 @@ function Posts(){
             <Post
                 id={420}
                 title={"Post pre teba"}
-                text= "#jankorazdva3   \n .hohrfdkhdf \n #uniquecharacter uniquecharacteruniquecharacteruniquecharacteruniquecharacteruniquecharacteruniquecharacteruniquecharacteruniquecharacteruniquecharacter"
+                text={'first\nsecond\r\nthird\n'}
             >
             </Post>
             <CreatePost></CreatePost>
-            <PostDetail
-                id={420}
-                title={"Post detail"}
-                text= "#jankorazdva3   \n .hohrfdkhdf \n #uniquecharacter"
-            />
         </>
     )
 }
