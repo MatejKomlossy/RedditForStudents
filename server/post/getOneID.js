@@ -1,18 +1,22 @@
-const {auth} = require("../general/controlLogin");
 const DB = require("../DB_main/db");
+const {canContinue} = require("../general/canContinue");
 const db = DB.getDbServiceInstance();
 
-function prePostGetAll(){
+function prePostGetOneID(){
     return async function(req, res) {
         try {
-            if (auth(req, res)===false) {
+            const keys = ["id"];
+            if (canContinue(req, res, keys, req.body)===false) {
                 return;
             }
-            const query = "SELECT \"posts\".*, sum(category) as rating\n" +
+            const query = {
+                text: "SELECT \"posts\".*, sum(category) as rating\n" +
                 "FROM \"posts\" LEFT JOIN \"ratings\" ON (\"posts\".\"id\" = \"ratings\".\"post_id\")\n" +
                 "WHERE (\"posts\".\"flag\" = true)\n" +
                 "GROUP BY \"posts\".\"id\"\n" +
-                "having count(category) filter ( where category=0 ) < 7 --const  or rations ?";
+                "having \"posts\".\"id\" = $1",
+                values:  [req.body.id]
+            };
             const rows = await db.get_json_query(query);
             if (rows instanceof Error) {
                 res.status(500).send({msg: rows.toString()});
@@ -20,8 +24,8 @@ function prePostGetAll(){
             }
             res.status(200).json(rows);
         } catch (e) {
-            res.status(500).send({msg: e.toString()});
+            res.status(500).send(e.toString());
         }
     }
 }
-module.exports =  {prePostGetAll}
+module.exports =  {prePostGetOneID}

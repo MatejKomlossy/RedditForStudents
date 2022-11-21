@@ -1,9 +1,9 @@
 
 const {preRatingDelete} = require("./delete");
-const {Request, Response} = require("../../tests/ResponseRequest");
-const {preLogin} = require("../../student/login");
+const {Request, Response} = require("../tests/ResponseRequest");
+const {preLogin} = require("../student/login");
 
-test('delete rating pass', async () => {
+test('delete post pass', async () => {
     const req = new Request();
     const res = new Response();
     req.body = {
@@ -13,14 +13,14 @@ test('delete rating pass', async () => {
     await preLogin()(req, res);
     expect(res._status).toBe(200);
     req.body ={
-        id:  5
+        id:  1
     };
     res._status = 0;
     await preRatingDelete()(req, res);
     expect(res._status).toBe(200);
     expect(res._msg.msg).toBe("delete successful");
 });
-test('delete rating fail', async () => {
+test('delete post fail', async () => {
     const req = new Request();
     const res = new Response();
     req.body = {

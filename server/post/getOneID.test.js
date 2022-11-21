@@ -1,9 +1,9 @@
 
-const {prePostGetAll} = require("./getAll");
+const {prePostGetOneID} = require("./getOneID");
 const {Request, Response} = require("../tests/ResponseRequest");
 const {preLogin} = require("../student/login");
 
-test('get all posts', async () => {
+test('get post', async () => {
     const req = new Request();
     const res = new Response();
     req.body = {
@@ -13,7 +13,10 @@ test('get all posts', async () => {
     await preLogin()(req, res);
     expect(res._status).toBe(200);
     res._status = 0;
-    await prePostGetAll()(req, res);
+    req.body ={
+        id: 1,
+    };
+    await prePostGetOneID()(req, res);
     expect(res._status).toBe(200);
-    expect(res._json.post.length.toString()).toBe("3");
+    expect(res._json.post.length.toString()).toBe("1");
 });

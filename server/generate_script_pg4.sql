@@ -18,9 +18,9 @@ values	('testovací post 1', 'joij foie \nfiojeifjewfaewiofjewjf', 1, now(), tru
 insert into ratings (category, post_id, student_id)
 values	(0, 1, 2),
 		(0, 1, 3),
-		(1, 2, 1),
- 		(1, 2, 2),
-		(1, 2, 3),
-		(2, 3, 1),
- 		(2, 3, 2),
-		(2, 3, 3)
+		(-1, 2, 1),
+ 		(-1, 2, 2),
+		(-1, 2, 3),
+		(1, 3, 1),
+ 		(1, 3, 2),
+		(1, 3, 3)

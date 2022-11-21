@@ -1,21 +1,20 @@
-const DB = require("../../DB_main/db");
-const {sqlRating} = require("./sqlRating");
-const {canContinue} = require("../../general/canContinue");
+const DB = require("../DB_main/db");
+const {sqlPost} = require("./sqlPost");
+const {canContinue} = require("../general/canContinue");
 const {comonDelete} = require("../general/delete");
-const db = DB.getDbServiceInstance();
 
 function preRatingDelete() {
     return async function (req, res) {
         try {
-            const keys = ["post_id", "id"]
+            const keys = ["id"]
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
             req.body.student_id = req.session.id;
-            const query = sqlRating.delete().where(
-                sqlRating.id.equals(req.body.id)
-                    .and(sqlRating.student_id.equals(req.body.student_id)))
-                .returning(sqlRating.id).toQuery();
+            const query = sqlPost.update({flag:false}).where(
+                sqlPost.id.equals(req.body.id)
+                    .and(sqlPost.student_id.equals(req.body.student_id)))
+                .returning(sqlPost.id).toQuery();
             await comonDelete(query, res);
         } catch (e) {
             res.status(500).send(e.toString());

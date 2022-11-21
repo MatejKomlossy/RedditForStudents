@@ -1,6 +1,6 @@
 const {sqlImage} = require("./sqlImage");
 const Path = require("path");
-const {savePath} = require("../../contants/urlsPaths");
+const {savePath} = require("../contants/urlsPaths");
 const fs = require("fs");
 
 
