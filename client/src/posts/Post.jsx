@@ -2,7 +2,7 @@ import PostBody from "./PostBody";
 import {Link} from "react-router-dom";
 
 
-function Post({id, title, text, imgUrl}) {
+function Post({id, title, post_text, student_id, changed, flag}) {
 
     return (
         <div
@@ -15,7 +15,7 @@ function Post({id, title, text, imgUrl}) {
                     <div>
                         <h2 className="text-2xl mb-2">{title}</h2>
                         <PostBody
-                            text={text}
+                            text={post_text}
                             maxLines={3}
                         >
                         </PostBody>
