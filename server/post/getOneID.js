@@ -22,7 +22,11 @@ function prePostGetOneID(){
                 res.status(500).send({msg: rows.toString()});
                 return;
             }
-            res.status(200).json(rows);
+            if (rows.length > 1) {
+                res.status(500).send({msg: "found multiple posts"}); //shouldn't ever happen
+                return;
+            }
+            res.status(200).json(rows[0]);
         } catch (e) {
             res.status(500).send(e.toString());
         }

@@ -15,7 +15,7 @@ class post {
         rating.initAppServices(app);
         app.post(postCreate, prePostCreate((Object.keys(new post()))));
         app.get(postGetAll, prePostGetAll());
-        app.get(postGetOne, prePostGetOneID());
+        app.post(postGetOne, prePostGetOneID());
         app.get(postGetOne, preRatingDelete());
     }
 }
