@@ -1,6 +1,6 @@
 import Header from "../Header";
 import Post from "./Post";
-import {postGetAll} from "../constants/urls";
+import {postGetAll} from "../constants/backendUrls";
 import useAlert from "../hooks/useAlrert";
 import React, {useEffect, useState} from "react";
 import Button from "../components/Button";

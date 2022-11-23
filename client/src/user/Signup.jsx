@@ -3,7 +3,7 @@ import {useState} from "react";
 import Button from "../components/Button";
 import Alert from '../components/Alert';
 import useAlert from "../hooks/useAlrert";
-import {studentRegister} from "../constants/urls";
+import {studentRegister} from "../constants/backendUrls";
 import {useClickCapureUpdate,useClickCapture} from "../context/ClickCapureCTX";
 import React from "react";
 
