@@ -1,0 +1,20 @@
+POST http://localhost:5000/post/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "post": {
+    "title": "test",
+    "post_text": "test",
+    "flag": true
+  },
+  "img": [
+    {
+      "title": "test1.png",
+      "file": "test1 hjklujukhjuyhjiuyjhjkj"
+    },
+    {
+      "title": "test1_2.png",
+      "file": "test1_2 hjklujukhjuyhjiuyjhjkj"
+    }
+  ]
+}

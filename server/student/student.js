@@ -1,4 +1,4 @@
-const {studentRegister, studentLogin, studentLogout} = require("../contants/urls");
+const {studentRegister, studentLogin, studentLogout} = require("../contants/urlsPaths");
 const {preRegistration} = require("./registration");
 const {preLogin} = require("./login");
 const {preLogout} = require("./logout");
