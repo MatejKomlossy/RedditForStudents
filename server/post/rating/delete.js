@@ -1,7 +1,7 @@
 const DB = require("../../DB_main/db");
 const {sqlRating} = require("./sqlRating");
 const {canContinue} = require("../../general/canContinue");
-const {comonDelete} = require("../general/delete");
+const {comonDelete} = require("../../general/delete");
 const db = DB.getDbServiceInstance();
 
 function preRatingDelete() {
