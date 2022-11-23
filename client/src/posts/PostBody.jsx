@@ -7,7 +7,7 @@ function PostBody ({maxLines, text, imageUrl}){
         if(!txt){
             return <p>no text</p>
         }
-        let splitText = txt.split(/r?\n/)
+        let splitText = txt.split(/r?\\n/)
         let maxNumOfLines = maxLines ? maxLines : splitText.length
         return splitText
             .slice(0, maxNumOfLines)

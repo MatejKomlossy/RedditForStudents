@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 
 function Post({id, title, post_text, student_id, changed, flag}) {
-
     return (
         <div
             className="flex-col rounded-xl p-6 w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300

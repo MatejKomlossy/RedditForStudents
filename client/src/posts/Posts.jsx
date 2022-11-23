@@ -1,10 +1,11 @@
 import Header from "../Header";
 import Post from "./Post";
-import CreatePost from "./CreatePost";
 import {postGetAll} from "../constants/urls";
 import useAlert from "../hooks/useAlrert";
-import {useEffect, useState} from "react";
-
+import React, {useEffect, useState} from "react";
+import Button from "../components/Button";
+import {FaFeatherAlt} from 'react-icons/fa';
+import {Link} from "react-router-dom";
 
 function Posts() {
 
@@ -43,7 +44,22 @@ function Posts() {
     return (
         <>
             <Header title={'Reddit for Students'}/>
-            <div className={""}>
+
+            <div className={"flex mx-10 mt-5 place-content-center"}>
+                <div title={'Create a Post'}>
+                    <Link to={"/createPost"}>
+                        <Button
+                            type={'secondary'}
+                            children={[
+                                <p key={0}>create</p>,
+                                <FaFeatherAlt key={1} className={'my-auto'}/>
+                            ]}
+                        />
+                    </Link>
+                </div>
+            </div>
+
+            <div className={'flex flex-col gap-6 mt-6'}>
                 {posts.map(post =>
                     <Post
                         key={post.id}
