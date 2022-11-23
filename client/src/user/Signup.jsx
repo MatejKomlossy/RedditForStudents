@@ -41,7 +41,7 @@ function Signup() {
         req.then(res => {
             if (res.ok) {
                 showSuccess("Registration successful")
-                setSignedUp(true);
+                switchClick("login")
             } else {
                 res.json().then(data => showError(data.msg))
             }
@@ -89,21 +89,10 @@ function Signup() {
                             value={isicNumber}
                             onChange={e => setIsicNumber(e.target.value)}
                 />
-                {!signedUp &&
-                    <Button
-                        onClick={() => signupSend()}
-                        type={'primary'}
-                        children={'Sign Up'}
-                        disabled={signedUp}
-                    />}
-                {signedUp &&
-                    <Button
-                        type={'primary'}
-                        children={'Log In'}
-                        className={"mt-3"}
-                        onClick={ () => switchClick("login")}
-                    />
-                }
+
+                <Button onClick={() => signupSend()} type={'primary'} children={'Sign Up'} />
+                <Button onClick={() => switchClick("login")} type={'secondary'} children={'Back'}/>
+                
             </div>
         </div>
     )
