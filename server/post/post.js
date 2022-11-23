@@ -14,9 +14,9 @@ class post {
         doFullPathMkdir(savePath);
         rating.initAppServices(app);
         app.post(postCreate, prePostCreate((Object.keys(new post()))));
-        app.post(postGetAll, prePostGetAll());
-        app.post(postGetOne, prePostGetOneID());
-        app.post(postGetOne, preRatingDelete());
+        app.get(postGetAll, prePostGetAll());
+        app.get(postGetOne, prePostGetOneID());
+        app.get(postGetOne, preRatingDelete());
     }
 }
 module.exports =  {post}

@@ -1,15 +1,15 @@
 function Button({
-     type = 'primary',      //or 'secondary'
-     children,
-     onClick,
-     className = '',
-     disabled = false,
-     isBlock = true,        //if the button is a block element (class block)
-    }){
+                    type = 'primary',      //or 'secondary'
+                    children,
+                    onClick,
+                    className = '',
+                    disabled = false,
+                    isBlock = true,        //if the button is a block element (class block)
+                }) {
 
     const textSize = 'text-base lg:text-lg';
 
-    const padding = 'px-7 lg:px-10 py-3 lg:py-4';
+    const padding = 'px-4 lg:px-7 py-1 lg:py-3';
 
     const color = {
         primary: 'text-white',
@@ -56,7 +56,9 @@ function Button({
 
     return (
         <button onClick={onClick} className={baseClasses.join(' ')} disabled={disabled}>
-            {children}
+            <div className={'flex flex-row gap-4 place-content-center'}>
+                {children}
+            </div>
         </button>
     )
 }
