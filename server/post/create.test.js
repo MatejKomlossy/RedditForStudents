@@ -35,7 +35,7 @@ test('create post with files pass', async () => {
     expect(res._status).toBe(200);
     expect(res._msg.msg).toBe("create successful");
 });
-test('create post with files pass', async () => {
+test('create post without files pass', async () => {
     const req = new Request();
     const res = new Response();
     req.body = {

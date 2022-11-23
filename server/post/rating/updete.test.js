@@ -37,5 +37,5 @@ test('update rating fail', async () => {
     res._status = 0;
     await preRatingUpdate(Object.keys(new rating()))(req, res);
     expect(res._status).toBe(502);
-    expect(res._msg.msg).toBe("Error: error: duplicate key value violates unique constraint \"ratings_post_id_student_id_key\"");
+    expect(res._msg.msg).toBe("Please fill in all values in form");
 });

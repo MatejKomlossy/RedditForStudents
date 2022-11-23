@@ -1,4 +1,3 @@
-const DB = require("../DB_main/db");
 const {sqlPost} = require("./sqlPost");
 const {canContinue} = require("../general/canContinue");
 const {comonDelete} = require("../general/delete");
