@@ -7,10 +7,7 @@ const db = DB.getDbServiceInstance();
 async function createPostReturnId(post, client) {
     const query = sqlPost.insert([post])
         .returning(sqlPost.id).toQuery();
-    console.log(query);
-    const result = await client.query(query);
-    console.log(result);
-    return result;
+    return await client.query(query);
 }
 
 async function createAll(body, res, client) {
@@ -34,7 +31,7 @@ function prePostCreate(keys){
                 return;
             }
             //TODO control images ?
-            req.body.post.student_id = req.session.id;
+            req.body.post.student_id = req.session.student_id;
             await db.doTransactions(req.body, res, createAll);
         } catch (e) {
             res.status(500).send(e.toString());
