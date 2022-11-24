@@ -18,5 +18,5 @@ test('get post', async () => {
     };
     await prePostGetOneID()(req, res);
     expect(res._status).toBe(200);
-    expect(res._json.post.length.toString()).toBe("1");
+    expect(res._json.length.toString()).toBe("1");
 });

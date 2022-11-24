@@ -25,14 +25,11 @@ function preRegistration(keys){
                 const body = req.body;
                 body.password = crypto.createHash('sha256').
                 update(body.password).digest('hex').toString();
-                console.log(body.password)
                 if (containAllImportantMembers(body, keys)) {
                     if (await isIsicActive(body.isic_number)) {
                         let query = sqlStudent.insert([body])
                             .returning(sqlStudent.id).toQuery();
-                        console.log(query);
                         const result = await db.get_json_query(query);
-                        console.log(result);
                         if (result instanceof Error) {
                             res.status(500).send({msg: "student already registered"});
                             return;

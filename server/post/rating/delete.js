@@ -1,13 +1,11 @@
-const DB = require("../../DB_main/db");
 const {sqlRating} = require("./sqlRating");
 const {canContinue} = require("../../general/canContinue");
 const {comonDelete} = require("../../general/delete");
-const db = DB.getDbServiceInstance();
 
 function preRatingDelete() {
     return async function (req, res) {
         try {
-            const keys = ["post_id", "id"]
+            const keys = ["id"]
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
