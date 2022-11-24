@@ -30,7 +30,7 @@ test('delete rating fail', async () => {
     await preLogin()(req, res);
     expect(res._status).toBe(200);
     req.body = {
-        id: 200
+        id: 200,
     };
     res._status = 0;
     await preRatingDelete()(req, res);

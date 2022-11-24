@@ -19,14 +19,12 @@ async function createAll(body, res, client) {
         throw result;
     }
     const postId = result.rows[0].id;
+    const createSuccessful = "create successful";
     if (body.imgs===undefined || body.imgs.length===0){
-        return "create successful";
+        return createSuccessful;
     }
-    result = await createImages(body.imgs, postId, client);
-    if (result instanceof Error) {
-        throw result;
-    }
-    return "create successful";
+    await createImages(body.imgs, postId, client);
+    return createSuccessful;
 }
 
 function prePostCreate(keys){
