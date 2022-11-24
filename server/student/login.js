@@ -32,7 +32,7 @@ function preLogin(){
             if (row.password===hash) {
                 delete row["password"];
                 req.session.loggedin = true;
-                req.session.id = row.id;
+                req.session.student_id = row.id;
                 req.session.nick_name = row.nick_name;
                 req.session.expire = new Date(Date.now() + hour);
                 res.status(200).json(row);

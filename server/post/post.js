@@ -15,7 +15,7 @@ class post {
         doFullPathMkdir(savePath);
         rating.initAppServices(app);
         app.post(postCreate, prePostCreate((Object.keys(new post()))));
-        app.post(postGetAll, prePostGetAll());
+        app.get(postGetAll, prePostGetAll());
         app.post(postGetOne, prePostGetOneID());
         app.post(postRatingUpdate, prePostUpdate((Object.keys(new post()))));
         app.post(postGetOne, preRatingDelete());

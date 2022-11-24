@@ -5,7 +5,7 @@ function PostBody ({maxLines, text, imageUrl}){
 
     const renderLines = (txt) => {
         if(!txt){
-            return <p>no text</p>
+            return <div/>
         }
         let splitText = txt.split(/r?\\n/)
         let maxNumOfLines = maxLines ? maxLines : splitText.length

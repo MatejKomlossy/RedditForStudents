@@ -4,10 +4,11 @@ import Button from "../components/Button";
 import Alert from '../components/Alert';
 import useAlert from "../hooks/useAlrert";
 import {Navigate} from 'react-router-dom';
-import {studentLogin} from "../constants/urls";
+import {studentLogin} from "../constants/backendUrls";
 import UserProfile from "./UserProfile";
 
 import {useClickCapureUpdate,useClickCapture} from "../context/ClickCapureCTX";
+import {posts} from "../constants/frontendUrls";
 
 
 
@@ -57,7 +58,7 @@ function Login() {
     }
 
     if (loggedIn) {
-        return <Navigate to="/posts"/>
+        return <Navigate to={posts}/>
     }
     
     return (

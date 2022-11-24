@@ -1,5 +1,5 @@
 import useAlert from "./hooks/useAlrert";
-import {studentLogout} from "./constants/urls";
+import {studentLogout} from "./constants/backendUrls";
 import UserProfile from "./user/UserProfile";
 import Button from "./components/Button";
 import Alert from "./components/Alert";

@@ -1,11 +1,12 @@
 import Header from "../Header";
 import Post from "./Post";
-import {postGetAll} from "../constants/urls";
+import {postGetAll} from "../constants/backendUrls";
 import useAlert from "../hooks/useAlrert";
 import React, {useEffect, useState} from "react";
 import Button from "../components/Button";
 import {FaFeatherAlt} from 'react-icons/fa';
 import {Link} from "react-router-dom";
+import Alert from "../components/Alert";
 
 function Posts() {
 
@@ -43,6 +44,8 @@ function Posts() {
 
     return (
         <>
+            {showAlert && <Alert type={alertType} title={alertTitle} context={alertContext}/>}
+
             <Header title={'Reddit for Students'}/>
 
             <div className={"flex mx-10 mt-5 place-content-center"}>
