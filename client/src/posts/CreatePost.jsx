@@ -8,6 +8,7 @@ import {Navigate} from "react-router-dom";
 import {posts} from "../constants/frontendUrls";
 import useAlert from "../hooks/useAlrert";
 import Alert from "../components/Alert";
+import convertToBase64 from "./FileConverter";
 
 
 function CreatePost({}) {
@@ -16,6 +17,7 @@ function CreatePost({}) {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [file, setFile] = useState(null);
+    const [fileBase64, setFileBase64] = useState(null);
     const [wasCreated, setWasCreated] = useState(false);
 
     const [showAlert, setShowAlert,
@@ -27,12 +29,24 @@ function CreatePost({}) {
         textareaRef.current.focus()
     }, [])
 
+    useEffect(() => {
+        if(!file) return;
+        convertToBase64(file, setFileBase64);
+    }, [file])
+
     const create = () => {
         const post = {"title": title, "post_text": text, "flag": true};
         const req = fetch(postCreate, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({"post": post})
+            body: JSON.stringify({
+                "post": post,
+                "imgs":file? [{
+                    "title": file.name,
+                    "file": fileBase64
+                }] : []
+            }
+            )
         });
         req.then(res => {
             if (res.ok) {
