@@ -9,7 +9,7 @@ function preRatingCreate(keys) {
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
-            req.body.student_id = req.session.id;
+            req.body.student_id = req.session.student_id;
             const query = sqlRating.insert([req.body]).toQuery();
             const rows = await db.get_json_query(query);
             if (rows instanceof Error) {

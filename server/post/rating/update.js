@@ -9,7 +9,7 @@ function preRatingUpdate(keys) {
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
-            req.body.student_id = req.session.id;
+            req.body.student_id = req.session.student_id;
             const query = sqlRating.update(req.body)
                 .where(sqlRating.id.equals(req.body.id)
                     .and(sqlRating.student_id.equals(req.body.student_id)))

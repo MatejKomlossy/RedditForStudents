@@ -19,6 +19,8 @@ function Posts() {
 
     useEffect(() => fetchAllPosts(), []);
 
+    useEffect(() => console.log(posts), [posts]);
+
     const showError = (errorMessage) => {
         setShowAlert(true);
         setAlertType('error');
