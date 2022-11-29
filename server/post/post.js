@@ -1,10 +1,10 @@
-const {savePath, postRatingUpdate, postCreate, postGetAll, postGetOne} = require("../contants/urlsPaths");
+const {savePath, postRatingUpdate, postCreate, postGetAll, postGetOne, postDelete, postRatingDelete} = require("../contants/urlsPaths");
 const {doFullPathMkdir} = require("./mkdirS");
 const {prePostCreate} = require("./create");
 const {prePostGetAll} = require("./getAll");
 const {prePostGetOneID} = require("./getOneID");
 const {prePostUpdate} = require("./update");
-const {preRatingDelete} = require("./delete");
+const {preRatingDelete, prePostDelete} = require("./delete");
 const {rating} = require("./rating/rating");
 
 class post {
@@ -18,7 +18,7 @@ class post {
         app.get(postGetAll, prePostGetAll());
         app.post(postGetOne, prePostGetOneID());
         app.post(postRatingUpdate, prePostUpdate((Object.keys(new post()))));
-        app.post(postGetOne, preRatingDelete());
+        app.delete(postDelete, prePostDelete());
     }
 }
 module.exports =  {post}
