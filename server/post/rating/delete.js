@@ -9,7 +9,7 @@ function preRatingDelete() {
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
-            req.body.student_id = req.session.id;
+            req.body.student_id = req.session.student_id;
             const query = sqlRating.delete().where(
                 sqlRating.id.equals(req.body.id)
                     .and(sqlRating.student_id.equals(req.body.student_id)))

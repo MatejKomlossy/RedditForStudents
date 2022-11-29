@@ -8,6 +8,7 @@ const postHide = "/post/hide";
 const postUpdate = "/post/update";
 const postGetAll = "/post/get/all";
 const postGetOne = "/post/get/one";
+const postDelete = "/post/delete";
 
 const postRatingCreate = "/post/rating/create";
 const postRatingGet = "/post/rating/get";
@@ -23,5 +24,6 @@ module.exports =  {
     postCreate, postUpdate, postGetAll, postGetOne, postHide,
     postRatingCreate, postRatingUpdate, postRatingDelete,postRatingGet,
     imageGet,
-    savePath
+    savePath,
+    postDelete
 }

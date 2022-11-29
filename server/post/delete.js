@@ -2,14 +2,14 @@ const {sqlPost} = require("./sqlPost");
 const {canContinue} = require("../general/canContinue");
 const {comonDelete} = require("../general/delete");
 
-function preRatingDelete() {
+function prePostDelete() {
     return async function (req, res) {
         try {
             const keys = ["id"]
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
-            req.body.student_id = req.session.id;
+            req.body.student_id = req.session.student_id;
             const query = sqlPost.update({flag:false}).where(
                 sqlPost.id.equals(req.body.id)
                     .and(sqlPost.student_id.equals(req.body.student_id)))
@@ -21,4 +21,4 @@ function preRatingDelete() {
     }
 }
 
-module.exports = {preRatingDelete}
+module.exports = {prePostDelete}
