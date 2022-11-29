@@ -1,7 +1,8 @@
 SELECT posts.*,
        sum(category) as rating,
        count(category) filter ( where category=0 ) as dead_count,
-       array_agg('[' || images.id || ',' || images.alt || ']') as images
+       array_agg('[' || images.id || ',' || images.alt || ']') as images,
+       (SELECT category from ratings r WHERE  r.post_id = posts.id AND r.student_id = $1) as usersRating
 FROM posts
     LEFT JOIN ratings ON (posts.id = ratings.post_id)
     LEFT JOIN images on posts.id = images.post_id

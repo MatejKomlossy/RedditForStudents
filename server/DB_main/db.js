@@ -23,6 +23,7 @@ class DB {
 
     async get_json_query(query) {
         try {
+            console.log(query)
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
