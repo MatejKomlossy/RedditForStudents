@@ -9,7 +9,11 @@ function prePostGetAll(){
             if (auth(req, res)===false) {
                 return;
             }
-            const rows = await db.get_json_query(getAllQueries);
+            const query = {
+                text: getAllQueries,
+                values: [req.session.student_id]
+            }
+            const rows = await db.get_json_query(query);
             if (rows instanceof Error) {
                 res.status(500).send({msg: rows.toString()});
                 return;

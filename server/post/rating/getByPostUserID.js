@@ -10,7 +10,7 @@ function getByPostUserID() {
             if (canContinue(req, res, keys, req.body) === false) {
                 return;
             }
-            req.body.student_id = req.session.id;
+            req.body.student_id = req.session.student_id;
             const query = sqlRating.select(sqlRating.star())
                 .where(sqlRating.post_id.equals(req.body.post_id)
                     .and(sqlRating.student_id.equals(req.body.student_id)))

@@ -12,7 +12,7 @@ function prePostGetOneID(){
             }
             const query = {
                 text: getOneIDQueries,
-                values:  [req.body.id]
+                values:  [req.session.student_id, req.body.id]
             };
             const rows = await db.get_json_query(query);
             if (rows instanceof Error) {

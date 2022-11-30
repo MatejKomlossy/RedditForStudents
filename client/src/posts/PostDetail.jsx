@@ -8,6 +8,7 @@ import Alert from "../components/Alert";
 import {posts} from "../constants/frontendUrls";
 import Button from "../components/Button";
 import {FaTrash} from "react-icons/fa";
+import RatingPanel from "./RatingPanel";
 
 
 function PostDetail() {
@@ -76,29 +77,39 @@ function PostDetail() {
 
             <Header title={'Reddit for Students'}/>
 
-            <div
-                className="flex flex-row rounded-xl p-6 w-10/12 max-w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300 mt-6">
-                <div className={"flex-col space-y-5"}>
-                    <div>
-                        <h2 className="text-2xl mb-2">{post.title}</h2>
-                        <PostBody
-                            text={post.post_text}
-                            images={post.images}
+            <div className="rounded-xl w-10/12 max-w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300 mt-6">
+                <div className={'flex flex-row'}>
+                    <div className={"flex-col space-y-5 px-6 pt-6"}>
+                        <div>
+                            <h2 className="text-2xl mb-2">{post.title}</h2>
+                            <PostBody
+                                text={post.post_text}
+                                images={post.images}
+                            >
+                            </PostBody>
+                        </div>
+                    </div>
+
+                    <div className={"ml-auto"}>
+                        <Button
+                            type={'secondary'}
+                            onClick={() => deletePost()}
+                            children={<FaTrash/>}
+                            ariaLabel={'delete file'}
+                            className={'px-1 lg:px-1.5 py-1 lg:py-1.5'}
                         >
-                        </PostBody>
+                        </Button>
                     </div>
                 </div>
 
-                <div className={"ml-auto"}>
-                    <Button
-                        type={'secondary'}
-                        onClick={() => deletePost()}
-                        children={<FaTrash/>}
-                        ariaLabel={'delete file'}
-                        className={'px-1 lg:px-1.5 py-1 lg:py-1.5'}
-                    >
-                    </Button>
-                </div>
+                {post.title &&
+                    <RatingPanel
+                        student_id={post.student_id}
+                        rating={post.rating}
+                        users_rating={post.users_rating}
+                        post_id={post.id}
+                    />
+                }
             </div>
         </>
     )

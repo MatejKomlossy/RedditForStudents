@@ -52,7 +52,8 @@ function PostBody({maxLines, text, images}) {
             {images &&
                 <div>
                     {renderImages()}
-                </div>}
+                </div>
+            }
         </div>
     )
 }
