@@ -7,21 +7,26 @@ import {postRatingCreate, postRatingDelete, postRatingUpdate} from "../constants
 
 function RatingPanel({post_id, rating, users_rating}) {
 
-    const [usersRating, setUsersRating] = useState(users_rating)
+    const [usersRating, setUsersRating] = useState(users_rating)  //category (-1, 0, 1)
+    const [postRating, setPostRating] = useState(rating)
 
     const buttonClass = 'max-w-min px-1 lg:px-1.5 py-1 lg:py-1.5 border-0';
 
     const sendRating = (category) => {
         if(category === usersRating){
+            setPostRating(postRating - category)
             setUsersRating(null)
             doSendRating(category, postRatingDelete)
             return
         }
         setUsersRating(category)
         if(usersRating === null){
+            setPostRating(postRating + category)
             doSendRating(category, postRatingCreate)
             return
         }
+        const newPostRating = postRating - usersRating + category
+        setPostRating(newPostRating)
         doSendRating(category, postRatingUpdate)
     }
 
@@ -61,7 +66,7 @@ function RatingPanel({post_id, rating, users_rating}) {
                 </Button>
             </div>
             <p className={'my-auto text-indigo-700 text-xl'}>
-                {rating? rating : 0}
+                {postRating? postRating : 0}
             </p>
             <div title={'Dislike'}>
                 <Button
