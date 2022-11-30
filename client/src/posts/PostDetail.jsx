@@ -77,13 +77,13 @@ function PostDetail() {
             <Header title={'Reddit for Students'}/>
 
             <div
-                className="flex flex-row rounded-xl p-6 w-10/12 min-w-max mx-auto bg-gradient-to-b from-cyan-300 to-blue-300 mt-6">
+                className="flex flex-row rounded-xl p-6 w-10/12 max-w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300 mt-6">
                 <div className={"flex-col space-y-5"}>
                     <div>
                         <h2 className="text-2xl mb-2">{post.title}</h2>
                         <PostBody
                             text={post.post_text}
-                            imageUrl={"placeholder"}
+                            images={post.images}
                         >
                         </PostBody>
                     </div>
