@@ -4,7 +4,8 @@ import {useEffect, useState} from "react";
 
 function Image({id, imgType, alt}) {       //nedokoncene
 
-    const [src, setSrc] = useState("");
+    const [encodedImg, setEncodedImg] = useState("");
+    const [decodedImg, setDecodedImg] = useState(null);
 
     const fetchImage = () => {
         if (id == null) return;
@@ -15,7 +16,7 @@ function Image({id, imgType, alt}) {       //nedokoncene
         });
         req.then(res => {
             if (res.ok) {
-                res.blob().then(blob => setSrc(URL.createObjectURL(blob)))
+                res.json().toString()
             } else {
                 res.json().then(data => console.error(data.msg))
             }
@@ -26,7 +27,12 @@ function Image({id, imgType, alt}) {       //nedokoncene
 
     return (
         <>
-            {src && <img alt={alt} src={src}></img>}
+            {decodedImg &&
+                <img
+                    src={`data:image/jpeg;base64,${encodedImg}`}
+                    alt={alt}
+                />
+            }
         </>
     )
 }
