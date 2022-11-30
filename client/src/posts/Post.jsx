@@ -26,6 +26,7 @@ function Post({id, title, post_text, student_id, rating, users_rating}) {  //zob
                     student_id={student_id}
                     rating={rating}
                     users_rating={users_rating}
+                    post_id={id}
                 />
             </div>
         </Link>

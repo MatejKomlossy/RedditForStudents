@@ -108,6 +108,7 @@ function PostDetail() {
                     student_id={post.student_id}
                     rating={post.rating}
                     users_rating={post.users_rating}
+                    post_id={post.id}
                 />
             </div>
         </>
