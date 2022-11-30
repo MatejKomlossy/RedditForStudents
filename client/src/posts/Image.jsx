@@ -2,10 +2,9 @@ import {imageGet} from "../constants/backendUrls";
 import {useEffect, useState} from "react";
 
 
-function Image({id, imgType, alt}) {       //nedokoncene
+function Image({id, imgType, alt}) {
 
-    const [encodedImg, setEncodedImg] = useState("");
-    const [decodedImg, setDecodedImg] = useState(null);
+    const [encodedImg, setEncodedImg] = useState(null);
 
     const fetchImage = () => {
         if (id == null) return;
@@ -16,7 +15,7 @@ function Image({id, imgType, alt}) {       //nedokoncene
         });
         req.then(res => {
             if (res.ok) {
-                res.json().toString()
+                res.json().then(obj => setEncodedImg(obj.img))
             } else {
                 res.json().then(data => console.error(data.msg))
             }
@@ -27,9 +26,9 @@ function Image({id, imgType, alt}) {       //nedokoncene
 
     return (
         <>
-            {decodedImg &&
+            {encodedImg &&
                 <img
-                    src={`data:image/jpeg;base64,${encodedImg}`}
+                    src={`data:image/${imgType};base64,${encodedImg}`}
                     alt={alt}
                 />
             }
