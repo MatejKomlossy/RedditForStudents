@@ -1,7 +1,6 @@
 const {auth} = require("../general/controlLogin");
 const DB = require("../DB_main/db");
 const {getAllQueries} = require("./queriesStrings");
-const {sqlPost} = require("./sqlPost");
 const db = DB.getDbServiceInstance();
 
 function prePostGetAll(){
@@ -14,7 +13,6 @@ function prePostGetAll(){
                 text: getAllQueries,
                 values: [req.session.student_id]
             }
-            console.log(query)
             const rows = await db.get_json_query(query);
             if (rows instanceof Error) {
                 res.status(500).send({msg: rows.toString()});

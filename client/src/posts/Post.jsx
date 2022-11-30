@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {postDetail} from "../constants/frontendUrls";
 
 
-function Post({id, title, post_text, student_id, changed, flag}) {
+function Post({id, title, post_text, student_id, changed, rating, usersRating}) {  //zobrat z post objektu
     return (
         <Link to={`${postDetail}/${id}`}>
             <div
