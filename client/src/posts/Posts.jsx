@@ -72,8 +72,9 @@ function Posts() {
                         title={post.title}
                         post_text={post.post_text}
                         student_id={post.student_id}
-                        changed={post.changed}
                         flag={post.flag}
+                        rating={post.rating}
+                        users_rating={post.users_rating}
                     />
                 )}
             </div>

@@ -11,7 +11,7 @@ function preRatingUpdate(keys) {
             }
             req.body.student_id = req.session.student_id;
             const query = sqlRating.update(req.body)
-                .where(sqlRating.id.equals(req.body.id)
+                .where(sqlRating.post_id.equals(req.body.post_id)
                     .and(sqlRating.student_id.equals(req.body.student_id)))
                 .toQuery();
             const rows = await db.get_json_query(query);
