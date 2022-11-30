@@ -19,14 +19,19 @@ function PostBody({maxLines, text, images}) {
 
         return images.map((img, idx) => {
                 if (!img) return <div key={idx}></div>
+                const imgFileName = imgAltFromWeirdImgString(img);
                 return <Image
                     key={idx}
                     id={imgIdFromWeirdImgString(img)}
-                    alt={imgAltFromWeirdImgString(img)}
-                    imgType={".png"}   //replace, dat tam priponu z nazvu
+                    alt={imgFileName}
+                    imgType={"." + fileType(imgFileName)}
                 />
             }
         )
+    }
+
+    const fileType = (fileName) => {
+        return fileName.split('.').pop();
     }
 
     const imgIdFromWeirdImgString = (img) => {

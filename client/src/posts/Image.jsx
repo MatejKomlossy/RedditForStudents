@@ -1,11 +1,10 @@
 import {imageGet} from "../constants/backendUrls";
 import {useEffect, useState} from "react";
-import useAlert from "../hooks/useAlrert";
 
 
 function Image({id, imgType, alt}) {       //nedokoncene
 
-    const [image, setImage] = useState(null);
+    const [src, setSrc] = useState("");
 
     const fetchImage = () => {
         if (id == null) return;
@@ -16,7 +15,7 @@ function Image({id, imgType, alt}) {       //nedokoncene
         });
         req.then(res => {
             if (res.ok) {
-                res.json().then(smth => console.log(smth))
+                res.blob().then(blob => setSrc(URL.createObjectURL(blob)))
             } else {
                 res.json().then(data => console.error(data.msg))
             }
@@ -27,7 +26,7 @@ function Image({id, imgType, alt}) {       //nedokoncene
 
     return (
         <>
-            <p>{alt}</p>
+            {src && <img alt={alt} src={src}></img>}
         </>
     )
 }
