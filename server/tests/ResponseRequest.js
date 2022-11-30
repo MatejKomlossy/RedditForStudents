@@ -1,4 +1,5 @@
 
+const fs = require("fs");
 class Response {
     _status = null;
     _msg = null;
@@ -12,6 +13,13 @@ class Response {
     }
     json(json){
         this._json = json;
+    }
+    writeHead(status, head){
+        this._status = status;
+    }
+    sendFile(File){
+        this._json=  fs.readFileSync(File,
+        {encoding:'utf8', flag:'r'});
     }
 }
 
