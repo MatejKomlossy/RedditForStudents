@@ -19,5 +19,5 @@ test('get post', async () => {
     };
     await preImageGetOneID()(req, res);
     expect(res._status).toBe(200);
-    expect(res._json.toString()).toBe("test1 hjklujukhjuyhjiuyjhjkj");
+    expect(res._json.img.toString()).toBe("test1 hjklujukhjuyhjiuyjhjkj");
 });
