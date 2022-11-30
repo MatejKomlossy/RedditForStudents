@@ -2,6 +2,7 @@ import {FaGrinStars, FaGrimace, FaSkull} from 'react-icons/fa';
 import Button from "../components/Button";
 import React, {useState} from "react";
 import {dislike, like, outdated} from "../constants/otherConstants";
+import {postRatingCreate, postRatingDelete, postRatingUpdate} from "../constants/backendUrls";
 
 
 function RatingPanel({post_id, rating, users_rating}) {
@@ -10,19 +11,42 @@ function RatingPanel({post_id, rating, users_rating}) {
 
     const buttonClass = 'max-w-min px-1 lg:px-1.5 py-1 lg:py-1.5 border-0';
 
-    function clickedClass(ratingConstant){
-        if(ratingConstant === usersRating){
+    const sendRating = (category) => {
+        if(category === usersRating){
+            setUsersRating(null)
+            doSendRating(category, postRatingDelete)
+            return
+        }
+        setUsersRating(category)
+        if(usersRating === null){
+            doSendRating(category, postRatingCreate)
+            return
+        }
+        doSendRating(category, postRatingUpdate)
+    }
+
+    const doSendRating = (category, endpointUrl) => {
+        const req = fetch(endpointUrl, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"category": category, "post_id": post_id})
+        });
+        req.then(res => {
+            if (res.ok) {
+
+            } else {
+                res.json().then(data => console.error(data.msg))
+            }
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+
+    function clickedClass(category){
+        if(category === usersRating){
             return "text-orange-500"
         }
         return ""
-    }
-
-    function sendRating(category){
-
-    }
-
-    function sendOrCreateRating(category){
-
     }
 
     return (
@@ -30,8 +54,7 @@ function RatingPanel({post_id, rating, users_rating}) {
             <div title={'Like'}>
                 <Button
                     type={'primary'}
-                    onClick={() => {
-                    }}
+                    onClick={() => sendRating(like)}
                     children={<FaGrinStars/>}
                     className={buttonClass + " " + clickedClass(like)}
                 >
@@ -43,8 +66,7 @@ function RatingPanel({post_id, rating, users_rating}) {
             <div title={'Dislike'}>
                 <Button
                     type={'primary'}
-                    onClick={() => {
-                    }}
+                    onClick={() => sendRating(dislike)}
                     children={<FaGrimace/>}
                     className={buttonClass + " " + clickedClass(dislike)}
                 >
@@ -53,8 +75,7 @@ function RatingPanel({post_id, rating, users_rating}) {
             <div title={'Outdated'}>
                 <Button
                     type={'primary'}
-                    onClick={() => {
-                    }}
+                    onClick={() => sendRating(outdated)}
                     children={<FaSkull/>}
                     className={buttonClass + " " + clickedClass(outdated)}
                 >
