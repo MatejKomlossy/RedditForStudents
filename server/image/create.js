@@ -19,7 +19,7 @@ async function createImages(imgs, postId, client) {
         result.rows.find(f => f.alt === e.title)))
     for (const map0Element of map0) {
         const saveName = Path.join(savePath, map0Element.id.toString()
-            + "." + Path.extname(map0Element.alt));
+            + Path.extname(map0Element.alt));
         fs.writeFileSync(saveName, map0Element.file, (err) => {
             if (err) throw err;
         } )
