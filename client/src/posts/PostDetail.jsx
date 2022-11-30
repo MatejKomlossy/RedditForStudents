@@ -61,8 +61,6 @@ function PostDetail() {
 
     useEffect(() => fetchPostById(), []);
 
-    useEffect(() => console.log(post), [post]);
-
     const showError = (errorMessage) => {
         setShowAlert(true);
         setAlertType('error');
