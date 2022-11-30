@@ -9,7 +9,7 @@ if (DEBUG === false) {
 }
 
 const app = express();
-app.use(express.json());     // midware req.body
+app.use(express.json({limit: '50mb'}));     // midware req.body
 app.use(session({
     secret: 'secret', // TODO maybe it will need change
     resave: true,
