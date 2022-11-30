@@ -83,7 +83,7 @@ function PostDetail() {
                         <h2 className="text-2xl mb-2">{post.title}</h2>
                         <PostBody
                             text={post.post_text}
-                            imageUrl={"placeholder"}
+                            images={post.images}
                         >
                         </PostBody>
                     </div>

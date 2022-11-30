@@ -12,7 +12,7 @@ function preImageGetOneID(){
             }
             res.writeHead(200,{'content-type':('image/'+req.body.mextname)});
             fs.createReadStream(
-                Path.join(savePath,req.body.id+'.'+req.body.mextname)
+                Path.join(savePath,req.body.id + req.body.mextname)
             ).pipe(res);
 
         } catch (e) {

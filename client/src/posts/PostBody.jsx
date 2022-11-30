@@ -1,10 +1,10 @@
-import Hyperlink from "../components/Hyperlink";
+import Image from "./Image";
 
 
-function PostBody ({maxLines, text, imageUrl}){
+function PostBody({maxLines, text, images}) {
 
     const renderLines = (txt) => {
-        if(!txt){
+        if (!txt) {
             return <div/>
         }
         let splitText = txt.split(/r?\\n/)
@@ -14,10 +14,40 @@ function PostBody ({maxLines, text, imageUrl}){
             .map((line, idx) => <p key={idx}>{line}</p>)
     }
 
+    const renderImages = () => {
+        if (!images) return <></>
+
+        return images.map((img, idx) => {
+                if (!img) return <div key={idx}></div>
+                return <Image
+                    key={idx}
+                    id={imgIdFromWeirdImgString(img)}
+                    alt={imgAltFromWeirdImgString(img)}
+                    imgType={".png"}   //replace, dat tam priponu z nazvu
+                />
+            }
+        )
+    }
+
+    const imgIdFromWeirdImgString = (img) => {
+        return weirdImgStringToArray(img)[0]
+    }
+
+    const imgAltFromWeirdImgString = (img) => {
+        return weirdImgStringToArray(img)[1]
+    }
+
+    const weirdImgStringToArray = (img) => {
+        return img.replace("[", "").replace("]", "").split(",")
+    }
+
     return (
         <div>
             {renderLines(text)}
-            {imageUrl && <Hyperlink href={imageUrl} linkText={"link na image"}/>}
+            {images &&
+                <div>
+                    {renderImages()}
+                </div>}
         </div>
     )
 }
