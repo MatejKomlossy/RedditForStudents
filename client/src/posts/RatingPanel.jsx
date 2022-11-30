@@ -5,7 +5,6 @@ import React, {useState} from "react";
 
 function RatingPanel({student_id, rating, users_rating}) {
 
-    const [postRating, setPostRating] = useState(rating)
     const [usersRating, setUsersRating] = useState(users_rating)
 
     const buttonClass = 'max-w-min px-1 lg:px-1.5 py-1 lg:py-1.5 border-0';
@@ -14,31 +13,37 @@ function RatingPanel({student_id, rating, users_rating}) {
         <div className={'p-2 flex flex-row space-x-3'}>
             <div title={'Like'}>
                 <Button
-                    type={'secondary'}
+                    type={'primary'}
                     onClick={() => {
                     }}
                     children={<FaGrinStars/>}
                     className={buttonClass}
+                    disabled={usersRating !== null}
                 >
                 </Button>
             </div>
+            <p className={'my-auto text-indigo-700 text-xl'}>
+                {rating? rating : 0}
+            </p>
             <div title={'Dislike'}>
                 <Button
-                    type={'secondary'}
+                    type={'primary'}
                     onClick={() => {
                     }}
                     children={<FaGrimace/>}
                     className={buttonClass}
+                    disabled={usersRating !== null}
                 >
                 </Button>
             </div>
             <div title={'Outdated'}>
                 <Button
-                    type={'secondary'}
+                    type={'primary'}
                     onClick={() => {
                     }}
                     children={<FaSkull/>}
                     className={buttonClass}
+                    disabled={usersRating !== null}
                 >
                 </Button>
             </div>

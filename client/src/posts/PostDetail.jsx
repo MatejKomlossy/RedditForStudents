@@ -61,6 +61,8 @@ function PostDetail() {
 
     useEffect(() => fetchPostById(), []);
 
+    useEffect(() => console.log(post), [post]);
+
     const showError = (errorMessage) => {
         setShowAlert(true);
         setAlertType('error');
@@ -102,7 +104,11 @@ function PostDetail() {
                     </div>
                 </div>
 
-                <RatingPanel/>
+                <RatingPanel
+                    student_id={post.student_id}
+                    rating={post.rating}
+                    users_rating={post.users_rating}
+                />
             </div>
         </>
     )
