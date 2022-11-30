@@ -2,7 +2,7 @@ import {imageGet} from "../constants/backendUrls";
 import {useEffect, useState} from "react";
 
 
-function Image({id, imgType, alt}) {
+function Image({id, imgType, alt, maxW}) {
 
     const [encodedImg, setEncodedImg] = useState(null);
 
@@ -30,6 +30,7 @@ function Image({id, imgType, alt}) {
                 <img
                     src={`${encodedImg}`}
                     alt={alt}
+                    className={''}
                 />
             }
         </>
