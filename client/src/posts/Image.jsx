@@ -28,7 +28,7 @@ function Image({id, imgType, alt}) {
         <>
             {encodedImg &&
                 <img
-                    src={`data:image/${imgType};base64,${encodedImg}`}
+                    src={`${encodedImg}`}
                     alt={alt}
                 />
             }

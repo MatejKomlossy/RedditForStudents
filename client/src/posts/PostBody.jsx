@@ -24,7 +24,7 @@ function PostBody({maxLines, text, images}) {
                     key={idx}
                     id={imgIdFromWeirdImgString(img)}
                     alt={imgFileName}
-                    imgType={"." + fileType(imgFileName)}
+                    imgType={fileType(imgFileName)}
                 />
             }
         )
