@@ -29,7 +29,7 @@ select * from images;
 
 DROP TABLE IF EXISTS ratings CASCADE;
 CREATE TABLE ratings (
-                          id serial primary key,
+                          id serial primary keyy,
                           category smallint check(category >=-1 and category <=1),
                           post_id integer references posts,
 						  student_id integer references students,

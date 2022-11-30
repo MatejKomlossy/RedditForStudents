@@ -1,9 +1,9 @@
-const {imageGetOne} = require("../contants/urlsPaths");
+const {imageGet} = require("../contants/urlsPaths");
 const {preImageGetOneID} = require("./getByID");
 
 class image {
     static initAppServices(app) {
-        app.post(imageGetOne, preImageGetOneID());
+        app.post(imageGet, preImageGetOneID());
     }
 }
 module.exports =  {image}
