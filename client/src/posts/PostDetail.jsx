@@ -2,7 +2,7 @@ import PostBody from "./PostBody";
 import {Navigate, useParams} from 'react-router-dom'
 import React, {useEffect, useState} from "react";
 import Header from "../Header";
-import {postGetOne, postDelete} from "../constants/backendUrls";
+import {postGetOne, postDelete, postIsAuthorGet} from "../constants/backendUrls";
 import useAlert from "../hooks/useAlrert";
 import Alert from "../components/Alert";
 import {posts} from "../constants/frontendUrls";
@@ -17,6 +17,7 @@ function PostDetail() {
     const emptyPost = {title: "", post_text: ""}
     const [post, setPost] = useState(emptyPost)
     const [deleted, setDeleted] = useState(false)
+    const [isStudentAuthor, setIsStudentAuthor] = useState(false)
 
     const [showAlert, setShowAlert,
         alertType, setAlertType,
@@ -59,7 +60,27 @@ function PostDetail() {
         })
     }
 
+    const isUserAuthor = () => {
+        if (id == null) return;
+        const req = fetch(postIsAuthorGet, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"post_id": id})
+        });
+        req.then(res => {
+            if (res.ok) {
+                res.json().then(data => setIsStudentAuthor(data.isAuthor))
+            } else {
+                res.json().then(data => showError(data.msg))
+            }
+        }).catch(err => {
+            showError(err)
+        })
+    }
+
     useEffect(() => fetchPostById(), []);
+
+    useEffect(() => isUserAuthor(), []);
 
     const showError = (errorMessage) => {
         setShowAlert(true);
@@ -90,6 +111,7 @@ function PostDetail() {
                         </div>
                     </div>
 
+                    {isStudentAuthor &&
                     <div className={"ml-auto"}>
                         <Button
                             type={'secondary'}
@@ -99,7 +121,7 @@ function PostDetail() {
                             className={'px-1 lg:px-1.5 py-1 lg:py-1.5'}
                         >
                         </Button>
-                    </div>
+                    </div>}
                 </div>
 
                 {post.title &&
