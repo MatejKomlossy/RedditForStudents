@@ -8,7 +8,7 @@ import {postRatingCreate, postRatingDelete, postRatingUpdate} from "../constants
 function RatingPanel({post_id, rating, users_rating}) {
 
     const [usersRating, setUsersRating] = useState(users_rating)  //category (-1, 0, 1)
-    const [postRating, setPostRating] = useState(rating)
+    const [postRating, setPostRating] = useState(parseInt(rating))
 
     const buttonClass = 'max-w-min px-1 lg:px-1.5 py-1 lg:py-1.5 border-0';
 
