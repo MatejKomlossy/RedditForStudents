@@ -14,6 +14,7 @@ const postRatingCreate = "/post/rating/create";
 const postRatingGet = "/post/rating/get";
 const postRatingUpdate = "/post/rating/update";
 const postRatingDelete = "/post/rating/delete";
+const postIsAuthorGet = "/post/isAuthor";
 
 const imageGet = "/image/get";
 
@@ -25,5 +26,6 @@ module.exports =  {
     postRatingCreate, postRatingUpdate, postRatingDelete,postRatingGet,
     imageGet,
     savePath,
-    postDelete
+    postDelete,
+    postIsAuthorGet
 }
