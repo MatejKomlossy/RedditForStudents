@@ -1,4 +1,6 @@
 const {sqlPost} = require("./sqlPost");
+const DB = require("../DB_main/db");
+const db = DB.getDbServiceInstance();
 
 function preIsStudentAuthor() {
     return async function (req, res) {
@@ -16,11 +18,12 @@ function preIsStudentAuthor() {
                 return;
             }
             if (!rows.length) {
-                res.status(200).send(false);
+                res.status(200).send({isAuthor: false});
                 return;
             }
-            res.status(200).send(true);
+            res.status(200).send({isAuthor: true});
         } catch (e) {
+            console.log(e)
             res.status(500).send(e.toString());
         }
     }

@@ -69,7 +69,7 @@ function PostDetail() {
         });
         req.then(res => {
             if (res.ok) {
-                setIsStudentAuthor(true)
+                res.json().then(data => setIsStudentAuthor(data.isAuthor))
             } else {
                 res.json().then(data => showError(data.msg))
             }
