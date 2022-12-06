@@ -10,6 +10,13 @@ import Button from "../components/Button";
 import {FaTrash} from "react-icons/fa";
 import RatingPanel from "./RatingPanel";
 
+// toto je pre update
+import InputField from "../components/InputField";
+import Textarea from 'react-expanding-textarea';
+import DragDrop from "../components/DragDrop";
+import {postCreate} from "../constants/backendUrls";
+import convertToBase64 from "./FileConverter";
+
 
 function PostDetail() {
 
@@ -18,11 +25,26 @@ function PostDetail() {
     const [post, setPost] = useState(emptyPost)
     const [deleted, setDeleted] = useState(false)
     const [isStudentAuthor, setIsStudentAuthor] = useState(false)
+    const [isEdited, setisEdited] = useState(false)
+    
+
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    const [file, setFile] = useState(null);
+    const [fileBase64, setFileBase64] = useState(null);
+    const [wasCreated, setWasCreated] = useState(false);
 
     const [showAlert, setShowAlert,
         alertType, setAlertType,
         alertTitle, setAlertTitle,
         alertContext, setAlertContext] = useAlert();
+        
+
+    useEffect(() => {
+        if(!file) return;
+        convertToBase64(file, setFileBase64);
+    }, [file])
+    
 
     const fetchPostById = () => {
         if (id == null) return;
@@ -41,6 +63,7 @@ function PostDetail() {
             showError(err)
         })
     }
+    
 
     const deletePost = () => {
         if (id == null) return;
@@ -92,14 +115,70 @@ function PostDetail() {
     if (deleted) {
         return <Navigate to={posts}/>
     }
+
+    // toot patri pre update edit
+
+    const changeToEdditMode = () => {
+        setisEdited(!isEdited)
+        setTitle(post.title)
+        // console.log(post.post_text)
+        setText(post.post_text)
+        // setFile()
+        console.log("edit mode",    isEdited)
+    }
+
+    
+
+    
+
+    const create = () => {
+        const post = {"title": title, "post_text": text, "flag": true};
+        const req = fetch(postCreate, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                "post": post,
+                "imgs":file? [{
+                    "title": file.name,
+                    "file": fileBase64
+                }] : []
+            }
+            )
+        });
+        req.then(res => {
+            if (res.ok) {
+                setWasCreated(true)
+            } else {
+                res.json().then(data => showError(data.msg))
+            }
+        }).catch(err => {
+            showError(err)
+        })
+    }
+
+
+    if (wasCreated) {
+        return <Navigate to={posts}/>
+    }
+    const update = () => {
+        console.log("update")
+    }
+
+
+
+
+
+
     return (
         <>
             {showAlert && <Alert type={alertType} title={alertTitle} context={alertContext}/>}
 
             <Header title={'Reddit for Students'}/>
-
+            {!isEdited &&
             <div className="rounded-xl w-10/12 max-w-10/12 mx-auto bg-gradient-to-b from-cyan-300 to-blue-300 mt-6">
+            
                 <div className={'flex flex-row'}>
+               
                     <div className={"flex-col space-y-5 px-6 pt-6"}>
                         <div>
                             <h2 className="text-2xl mb-2">{post.title}</h2>
@@ -110,9 +189,11 @@ function PostDetail() {
                             </PostBody>
                         </div>
                     </div>
+                
+                
 
                     {isStudentAuthor &&
-                    <div className={"ml-auto"}>
+                    <div className={"ml-auto flex flex-row space-x-2"}>
                         <Button
                             type={'secondary'}
                             onClick={() => deletePost()}
@@ -121,8 +202,18 @@ function PostDetail() {
                             className={'px-1 lg:px-1.5 py-1 lg:py-1.5'}
                         >
                         </Button>
+                        <Button
+                            type={'secondary'}
+                            onClick={() => changeToEdditMode()}
+                            children={"edit"}
+                            ariaLabel={'delete file'}
+                            className={'px-1 lg:px-1.5 py-1 lg:py-1.5'}
+                        >
+                        </Button>
                     </div>}
                 </div>
+                
+                
 
                 {post.title &&
                     <RatingPanel
@@ -133,6 +224,38 @@ function PostDetail() {
                     />
                 }
             </div>
+        }
+        {isEdited &&
+            <div className="flex flex-col mx-auto gap-6">
+            <InputField type={'text'}
+                        label={'Title'}
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+            />
+
+            <Textarea
+                className="w-full outline-0 border-l-2 border-l-sky-500 resize-none px-2"
+                id="my-textarea"
+                maxLength="3000"
+                onChange={e => setText(e.target.value)}
+                value={text}
+                placeholder="Your message goes here :)"
+                rows={5}
+                
+            />
+
+            <div className="flex">
+                <DragDrop file={file} setFile={setFile}/>
+                <div className="flex-none w-30 h-14 ml-auto">
+                    <Button
+                        type={'primary'}
+                        onClick={() => update()}
+                        children={'update'}
+                    />
+                </div>
+            </div>
+        </div>
+        }
         </>
     )
 }
