@@ -31,6 +31,7 @@ function CreatePost({}) {
 
     useEffect(() => {
         if(!file) return;
+        console.log(file)
         convertToBase64(file, setFileBase64);
     }, [file])
 

@@ -10,6 +10,7 @@ function DragDrop({file, setFile}) {
     //const [file, setFile] = useState(null);
 
     const handleChange = (file) => {
+        // sem dojde 1. subor 
         setFile(file);
     };
 

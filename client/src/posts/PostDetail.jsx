@@ -42,6 +42,7 @@ function PostDetail() {
 
     useEffect(() => {
         if(!file) return;
+        console.log("sme tuna")
         convertToBase64(file, setFileBase64);
     }, [file])
     
@@ -118,12 +119,43 @@ function PostDetail() {
 
     // toot patri pre update edit
 
+    function base64toBlob(base64Data, contentType) {
+        contentType = contentType || '';
+        let sliceSize = 1024;
+        let byteCharacters = atob(base64Data);
+        let bytesLength = byteCharacters.length;
+        let slicesCount = Math.ceil(bytesLength / sliceSize);
+        let byteArrays = new Array(slicesCount);
+    
+        for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+            let begin = sliceIndex * sliceSize;
+            let end = Math.min(begin + sliceSize, bytesLength);
+    
+            let bytes = new Array(end - begin);
+            for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
+                bytes[i] = byteCharacters[offset].charCodeAt(0);
+            }
+            byteArrays[sliceIndex] = new Uint8Array(bytes);
+        }
+        return new Blob(byteArrays, { type: contentType });
+    }
+
     const changeToEdditMode = () => {
         setisEdited(!isEdited)
         setTitle(post.title)
         // console.log(post.post_text)
         setText(post.post_text)
         // setFile()
+        //console.log(post)
+        //console.log(document.getElementsByTagName("img")[0].src )
+        console.log(document.getElementsByTagName("img")[0] )
+        //DragDrop.handleChange("NONE")
+
+        const my_I = post.images[0].split(",")[1].replace("]","");
+        console.log(base64toBlob(my_I,'image/png'))
+        //setFileBase64(document.getElementsByTagName("img")[0].src )
+
+        console.log(my_I)
         console.log("edit mode",    isEdited)
     }
 
@@ -193,7 +225,7 @@ function PostDetail() {
                 
 
                     {isStudentAuthor &&
-                    <div className={"ml-auto flex flex-row space-x-2"}>
+                    <div className={"ml-auto flex flex-row space-x-2 max-h-12"}>
                         <Button
                             type={'secondary'}
                             onClick={() => deletePost()}
@@ -226,34 +258,37 @@ function PostDetail() {
             </div>
         }
         {isEdited &&
-            <div className="flex flex-col mx-auto gap-6">
-            <InputField type={'text'}
-                        label={'Title'}
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-            />
+                <div className="border-2 mt-6 border-blue-600 rounded-xl p-6 w-10/12 min-w-max mx-auto">
 
-            <Textarea
-                className="w-full outline-0 border-l-2 border-l-sky-500 resize-none px-2"
-                id="my-textarea"
-                maxLength="3000"
-                onChange={e => setText(e.target.value)}
-                value={text}
-                placeholder="Your message goes here :)"
-                rows={5}
-                
-            />
-
-            <div className="flex">
-                <DragDrop file={file} setFile={setFile}/>
-                <div className="flex-none w-30 h-14 ml-auto">
-                    <Button
-                        type={'primary'}
-                        onClick={() => update()}
-                        children={'update'}
+                    <div className="flex flex-col mx-auto gap-6">
+                    <InputField type={'text'}
+                                label={'Title'}
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
                     />
+
+                    <Textarea
+                        className="w-full outline-0 border-l-2 border-l-sky-500 resize-none px-2"
+                        id="my-textarea"
+                        maxLength="3000"
+                        onChange={e => setText(e.target.value)}
+                        value={text}
+                        placeholder="Your message goes here :)"
+                        rows={5}
+                        
+                    />
+
+                    <div className="flex">
+                        <DragDrop file={file} setFile={setFile}/>
+                        <div className="flex-none w-30 h-14 ml-auto">
+                            <Button
+                                type={'primary'}
+                                onClick={() => update()}
+                                children={'update'}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
         }
         </>
